@@ -1,0 +1,6 @@
+/bin
+/.cache
+/**/bin
+/.settings
+/.worksheet
+/.worksheet/*
