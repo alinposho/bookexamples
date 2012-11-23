@@ -28,3 +28,9 @@ object SingletonObj {
     }
   override def toString = (cache foldRight "") ((n,acc) => "(" + n._1 + " -> " + n._2 + ")" + " " + acc)
 }
+
+// Won't compile since traits and objects may not have parameters
+//object NonCompiling(val a: Int){
+//
+//	sum(p: Int) =  NonCompiling(a + p)
+//}
