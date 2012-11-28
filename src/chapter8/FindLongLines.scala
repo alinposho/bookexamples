@@ -9,5 +9,8 @@ object FindLongLines {
 }
 
 // This is the command that can be used in the terminal to run the application:
-// scala -cp . chapter8.FindLongLines 5 ../src/chapter8/FindLongLines.scala ../src/chapter8/LongLines.scala 
+// scala -cp . chapter8.FindLongLines 5 ../src/chapter8/FindLongLines.scala ../src/chapter8/LongLines.scala
+
+// Running the same application from Eclipse requires providing these args:
+// 5 ./src/chapter8/FindLongLines.scala
 
