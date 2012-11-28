@@ -24,4 +24,11 @@ object forexpressions {
   //grep(".*gcd.*") // Returns nothing
   //grep(".*eclipse*")
 
+	def exeFiles =
+		for(
+			file <- filesHere
+			if(file.getName().endsWith(".exe"))
+		) yield file                      //> exeFiles: => Array[java.io.File]
+
+	exeFiles                                  //> res0: Array[java.io.File] = Array(.\eclipse.exe, .\eclipsec.exe)
 }
