@@ -10,4 +10,14 @@ object VariableArgumentFunctions {
 
   echo("1", "some string")                        //> 1
                                                   //| some string
+  
+	// An interesting example
+  val arr = Array("What's", "up", "doc?")         //> arr  : Array[java.lang.String] = Array(What's, up, doc?)
+  // This will not compile
+  //echo(arr)
+  // but this will
+  echo(arr: _*)                                   //> What's
+                                                  //| up
+                                                  //| doc?
+  
 }
