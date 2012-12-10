@@ -12,6 +12,10 @@ object clojures {
 	
 	addMore(1)                                //> res0: Int = 11
 
+	// Some weird logic below
+	more = 99999
+	
+	addMore(1)                                //> res1: Int = 100000
 
 
 
