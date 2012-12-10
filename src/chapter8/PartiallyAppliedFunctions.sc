@@ -22,5 +22,9 @@ object PartiallyAppliedFunctions {
                                                   //> sum2: (x: Int, y: Int, z: Int)Int
   val b = sum2 _                                  //> b  : (Int, Int, Int) => Int = <function3>
   b(4, 5, 6)                                      //> res1: Int = 15
+  
+  // Another example of a partially applied function
+  val c = sum2(1, _: Int, 4)                      //> c  : Int => Int = <function1>
 
+	c(3)                                      //> res2: Int = 8
 }
