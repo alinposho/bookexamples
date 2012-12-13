@@ -10,7 +10,7 @@ abstract class Element {
 
   def above(that: Element): Element = {
     val this1 = this widen that.width
-    val that1 = that widen this.height
+    val that1 = that widen this.width
     elem(this1.contents ++ that1.contents)
   }
 
