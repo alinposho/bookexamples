@@ -17,7 +17,9 @@ abstract class Element {
   def beside(that: Element): Element = {
     val this1 = this heighten that.height
     val that1 = that heighten this.height
-    elem(this1.contents ++ that1.contents)
+    elem(
+      for ((line1, line2) <- this1.contents zip that1.contents)
+        yield line1 + line2)
   }
 
   def widen(w: Int): Element = {
@@ -38,6 +40,7 @@ abstract class Element {
     }
   }
 
+  override def toString = contents mkString "\n"
 }
 
 object Element {
