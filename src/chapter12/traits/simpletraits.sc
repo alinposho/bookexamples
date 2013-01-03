@@ -1,10 +1,8 @@
-package chapter12
+package chapter12.traits
 
 object simpletraits {
 
-	val frog = new Frog                       //> frog  : chapter12.Frog = green
-	frog.philosophize                         //> I consume memory therefore, I am!
-
-
+	val frog:Philosophical = new Frog         //> frog  : chapter12.traits.Philosophical = green
+	frog.philosophize                         //> it ain't easy being green!
 
 }
