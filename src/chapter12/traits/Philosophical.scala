@@ -1,4 +1,4 @@
-package chapter12
+package chapter12.traits
 
 trait Philosophical {
   def philosophize() {
