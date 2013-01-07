@@ -56,6 +56,10 @@ object Element {
     ch: Char,
     override val width: Int,
     override val height: Int) extends Element {
+    
+    require(width >= 0)
+    require(height >= 0)
+    
     private val line = ch.toString * width
     def contents = Array.fill(height)(line)
   }
