@@ -22,7 +22,7 @@ class ElementSpec extends FlatSpec with ShouldMatchers {
   
   it should "throw an IAE if passed a negative width" in {
     evaluating {
-      elem('x', -2, 3)
+      elem('x', 2, 3)
     } should produce[IllegalArgumentException]
   }
   
