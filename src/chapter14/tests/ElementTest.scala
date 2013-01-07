@@ -12,7 +12,7 @@ class ElementTest extends FunSuite {
 
   test("interesting test") {
     val errorMessage = intercept[IllegalArgumentException] {
-      elem('x', 2, 3)
+      elem('x', -2, 3)
     }.getMessage()
     
     println("Error message: " + errorMessage);
