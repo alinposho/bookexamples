@@ -1,4 +1,4 @@
-package forkjoinexample;
+package javaconcurrency.forkjoinexample;
 
 /*
  * Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
