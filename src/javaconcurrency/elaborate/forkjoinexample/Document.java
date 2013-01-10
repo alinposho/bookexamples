@@ -1,4 +1,4 @@
-package javaconcurrency.elaborate.forkjoinexample.singlethreaded;
+package javaconcurrency.elaborate.forkjoinexample;
 
 import java.io.BufferedReader;
 import java.io.File;
