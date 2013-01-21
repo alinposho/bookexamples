@@ -27,4 +27,10 @@ object MapExamples {
   tm += (2 -> 'x')
   tm                                              //> res2: scala.collection.immutable.TreeMap[Int,Char] = Map(1 -> x, 2 -> x, 3 -
                                                   //| > x, 4 -> x)
+
+  // Converting mutable - immutable maps
+  val muta = mutable.Map("i" -> 1, "ii" -> 2)     //> muta  : scala.collection.mutable.Map[java.lang.String,Int] = Map(ii -> 2, i 
+                                                  //| -> 1)
+  val immu = Map.empty ++ muta                    //> immu  : scala.collection.immutable.Map[java.lang.String,Int] = Map(ii -> 2, 
+                                                  //| i -> 1)
 }
