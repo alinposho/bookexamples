@@ -1,7 +1,7 @@
 package chapter18.stafulobjects
 
 object VarExample {
-  val t = new Time()                              //> t  : chapter18.stafulobjects.Time = chapter18.stafulobjects.Time@699c8551
+  val t = new Time()                              //> t  : chapter18.stafulobjects.Time = chapter18.stafulobjects.Time@22f4bf02
 
 	// Notice the generated setter method
 	t.hour_=(100)
@@ -14,9 +14,11 @@ object VarExample {
 	// OR
 	t.hour = (99)
 	t.hour                                    //> res2: Int = 99
+	
+	t.minute                                  //> res3: Int = 0
 }
 
 class Time {
   var hour = 12
-  var minute = 0
+  val minute = 0
 }
