@@ -30,13 +30,20 @@ object NameResolver extends Actor {
   }
 
   def main(args: Array[String]) {
+    
+    println("Start of the program");
+    
     NameResolver.start()
 
     NameResolver ! ("www.scala-lang.org", self)
-
     self.receiveWithin(1000) { case x => println("received: " + x) }
 
+    NameResolver ! ("wwwwww.scala-lang.org", self)
+    self.receiveWithin(1000) { case x => println("received: " + x) }
+    
     NameResolver ! ("EXIT")
+    
+    println("Start of the program");
   }
 
 }
