@@ -11,6 +11,9 @@ object InterestingUseOfCaseSequences {
 	withDefault(Some(100))                    //> res0: Int = 100
 	withDefault(None)                         //> res1: Int = 0
 	
+	withDefault.getClass()                    //> res2: java.lang.Class[?0] = class chapter15.patterns.InterestingUseOfCaseSeq
+                                                  //| uences$$anonfun$main$1$$anonfun$1
+	
 	
 	// Won't compile
 	//withDefault(Some("ssss"))
@@ -21,6 +24,6 @@ object InterestingUseOfCaseSequences {
 		case None => "EMPTY!"
 	}                                         //> withDefaultMatch  : Option[String] => String = <function1>
 	
-	withDefaultMatch(Some("my String"))       //> res2: String = my String
+	withDefaultMatch(Some("my String"))       //> res3: String = my String
 
 }
