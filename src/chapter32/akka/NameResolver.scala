@@ -43,7 +43,7 @@ object NameResolver extends Actor {
     
     NameResolver ! ("EXIT")
     
-    println("Start of the program");
+    println("End of the program");
   }
 
 }
