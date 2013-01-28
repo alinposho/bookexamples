@@ -16,7 +16,7 @@ trait Simulant extends Actor {
         case Stop => exit()
         case Ping(time) =>
           if (time == 1) simStarting()
-          clock ! Pong(time, this)
+          clock ! Pong(time, self)
         case msg => handleSimMessage(msg)
       }
     }

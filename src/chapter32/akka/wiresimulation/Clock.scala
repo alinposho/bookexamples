@@ -61,7 +61,10 @@ class Clock extends Actor {
         assert(time == currentTime)
         assert(busySimulants contains sim)
         busySimulants -= sim
-      case Start => running = true
+      case Start => {
+        running = true
+        println("Starting the simulation!");
+      }
       case Stop =>
         for (sim <- allSimulants)
           sim ! Stop
