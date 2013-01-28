@@ -70,12 +70,11 @@ class Clock extends Actor {
           sim ! Stop
         exit()
     }
-    
+
     def insert(ag: List[WorkItem], item: WorkItem): List[WorkItem] = {
-    
-    if (ag.isEmpty || item.time < ag.head.time) item :: ag
-    else ag.head :: insert(ag.tail, item)
-  }
+      if (ag.isEmpty || item.time < ag.head.time) item :: ag
+      else ag.head :: insert(ag.tail, item)
+    }
 
   }
 
