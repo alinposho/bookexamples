@@ -11,7 +11,7 @@ class Clock extends Actor {
   private var agenda: List[WorkItem] = List()
   private var allSimulants = List[Actor]()
   private var busySimulants: Set[Actor] = Set.empty
-  
+
   def add(sim: Simulant) {
     allSimulants = sim :: allSimulants
   }
@@ -52,6 +52,28 @@ class Clock extends Actor {
     }
   }
 
-  def reactToOneMessage() {}
+  def reactToOneMessage() {
+    react {
+      case AfterDelay(delay, msg, target) =>
+        val item = WorkItem(currentTime + delay, msg, target)
+        agenda = insert(agenda, item)
+      case Pong(time, sim) =>
+        assert(time == currentTime)
+        assert(busySimulants contains sim)
+        busySimulants -= sim
+      case Start => running = true
+      case Stop =>
+        for (sim <- allSimulants)
+          sim ! Stop
+        exit()
+    }
+    
+    def insert(ag: List[WorkItem], item: WorkItem): List[WorkItem] = {
+    
+    if (ag.isEmpty || item.time < ag.head.time) item :: ag
+    else ag.head :: insert(ag.tail, item)
+  }
+
+  }
 
 }

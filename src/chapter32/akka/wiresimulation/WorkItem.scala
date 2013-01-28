@@ -8,5 +8,3 @@ case class AfterDelay(delay: Int, msg: Any, target: Actor)
 
 case object Start
 case object Stop
-
-case class Ping (currentTime: Int)
