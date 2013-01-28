@@ -10,5 +10,10 @@ object SillyActorExample {
     for (i <- 1 to 5)
       println("That is the question.")
     Thread.sleep(1000)
-  }                                               //> seriousActor2  : scala.actors.Actor = scala.actors.Actor$$anon$1@72d3f17d|
+  }                                               //> That is the question.
+                                                  //| That is the question.
+                                                  //| That is the question.
+                                                  //| That is the question.
+                                                  //| That is the question.
+                                                  //| seriousActor2  : scala.actors.Actor = scala.actors.Actor$$anon$1@5cc75d38|
 }
