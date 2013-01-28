@@ -10,17 +10,22 @@ case class LookupResult(
   address: Option[InetAddress])
 
 object NameResolver2 extends Actor {
+
+  val EXIT = "EXIT!"
   
   def act() {
     loop {
       react {
         case LookupIP(name, actor) =>
           actor ! LookupResult(name, getIp(name))
-        case "EXIT!" => exit()
+        case EXIT => {
+          println("Received EXIT message!");
+          exit()
+        }
       }
     }
   }
-  
+
   def getIp(name: String): Option[InetAddress] = {
     try {
       Some(InetAddress.getByName(name))
@@ -41,7 +46,7 @@ object NameResolver2 extends Actor {
     NameResolver2 ! LookupIP("wwwwww.scala-lang.org", self)
     self.receiveWithin(1000) { case x => println("received: " + x) }
 
-    NameResolver2 ! ("EXIT")
+    NameResolver2 ! (EXIT)
 
     println("End of the program");
   }
