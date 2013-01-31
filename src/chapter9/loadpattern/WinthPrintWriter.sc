@@ -1,8 +1,8 @@
-package chapter9.controlabstractions
+package chapter9.loadpattern
 
 import java.io._
 
-object WithPrintWriter {
+object WinthPrintWriter {
 
   def withPrintWriter(file: File)(op: PrintWriter => Unit) {
     val writer = new PrintWriter(file)
