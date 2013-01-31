@@ -16,7 +16,9 @@ import org.htmlparser.util.NodeList;
  */
 public class LinkFinderAction extends RecursiveAction {
 
-    private String url;
+	private static final long serialVersionUID = -19612891891371503L;
+	
+	private String url;
     private LinkHandler cr;
     /**
      * Used for statistics
