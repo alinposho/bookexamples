@@ -19,7 +19,9 @@ class ChatRoom extends Actor {
             actor {
         	  while (true) {
         	    self.receive {
-        	      case Post(msg) => subscriber ! Post(msg)
+        	      case Post(msg) =>
+        	        println("received post message: " + msg + " from " + this.sender)
+        	        subscriber ! Post(msg)
         	    }
         	  }
             }
@@ -27,7 +29,10 @@ class ChatRoom extends Actor {
           reply("Subscribed " + user)
           
         case Unsubscribe(user) => // handle unsubscription
-        case UserPost(user, msg) => // handle post
+        case UserPost(user, msg) => 
+        	for(key <- session.keys; if key != user) {
+        	  session(key) ! msg
+        	}
       }
     }
 
