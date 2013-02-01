@@ -13,15 +13,19 @@ class ChatRoom extends Actor {
       receive {
         case Subscribe(user) =>
           println("received a subsscribe message from user: " + user);
+          // Each actor has access to the sender of a message by calling the sender method
+          val subscriber = sender
           val sessionUser =
             actor {
         	  while (true) {
         	    self.receive {
-        	      case Post(msg) => // send message to sender
+        	      case Post(msg) => subscriber ! Post(msg)
         	    }
         	  }
             }
           session += (user -> sessionUser)
+          reply("Subscribed " + user)
+          
         case Unsubscribe(user) => // handle unsubscription
         case UserPost(user, msg) => // handle post
       }

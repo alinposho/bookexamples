@@ -10,7 +10,11 @@ object Main {
 
     val user1 = User("user1")
 
-    chatRoom ! Subscribe(user1)
+//    chatRoom ! Subscribe(user1)
+    // Sending a synchronous message
+    chatRoom !? Subscribe(user1) match {
+      case response: String => println("Received: " + response)
+    }
   }
 
 }
