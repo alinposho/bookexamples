@@ -15,18 +15,27 @@ object Main {
     chatRoom !? Subscribe(user1) match {
       case response: String => println("Received: " + response)
     }
-    
+
     // An example of Scala's Future usage
     val future = chatRoom !! Subscribe(User("user2"))
-    println(future())
-    
-    chatRoom !? UserPost(user1, Post("message for user1")) match {
-      case Post(msg) => 
-        	        println("received post message: " + msg + " from " + user1)
+    println(future()) //This is where we block waiting for the future's result 
+
+    chatRoom !? UserPost(user1, Post("message from user1")) match {
+      case Post(msg) =>
+        println("received post message: " + msg + " from " + user1)
     }
-    
-// Doesn't work    
-//    System.exit(1000)
+
+    // TO be more explicit about what's the deal with match
+    /*
+   val response = chatRoom !? UserPost(user1, Post("message from user1"));
+    response match {
+      case Post(msg) =>
+        println("received post message: " + msg + " from " + user1)
+    }
+     */
+
+    // Doesn't work    
+    //    System.exit(1000)
   }
 
 }
