@@ -26,10 +26,16 @@ object ChaningActors {
 
     val firstActor = buildActorChain(2, null);
 
-    // Sending the 'Die message to the actor chain
+    // Sending the 'Die message to the actor chain - This will terminate all actors
+    // since they are not waiting in an infinite while loop.
     firstActor !? 'Die match {
-      case 'Ack => println("Killed the last actor in the chain!")
+      case 'Ack => println("Killed the actors from the chain!")
     }
+
+    // This will cause the program to run indefinitely
+    /*firstActor !? 'Die match {
+      case 'Ack => println("Killed the last actor in the chain!")
+    }*/
   }
 
 }
