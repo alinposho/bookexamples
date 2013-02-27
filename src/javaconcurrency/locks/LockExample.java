@@ -4,7 +4,7 @@ import java.util.concurrent.locks.*;
 import java.util.*;
 import java.text.*;
 
-public class lock_example {
+public class LockExample {
 	public static Lock this_lock = new ReentrantLock();
 
 	public static void main(String[] args) throws Exception {
@@ -27,25 +27,25 @@ public class lock_example {
 class ListenerThread extends Thread {
 	public void run() {
 		while (true) {
-			lock_example.report("The Listener requests the lock.");
-			lock_example.this_lock.lock();
-			lock_example.report("The Listener acquires the lock.");
-			if (lock_example.message == 0) {
-				lock_example.report("The Speaker has sent nothing.");
-				lock_example.report("The Listener will check again later.");
+			LockExample.report("The Listener requests the lock.");
+			LockExample.this_lock.lock();
+			LockExample.report("The Listener acquires the lock.");
+			if (LockExample.message == 0) {
+				LockExample.report("The Speaker has sent nothing.");
+				LockExample.report("The Listener will check again later.");
 				try {
 					Thread.sleep(800);
 				} catch (InterruptedException ie) {
 					// ie
 				}
 			} else {
-				lock_example.report("The Listener just received "
-						+ Integer.toString(lock_example.message)
+				LockExample.report("The Listener just received "
+						+ Integer.toString(LockExample.message)
 						+ " from the Speaker.");
-				lock_example.message = 0;
+				LockExample.message = 0;
 			}
-			lock_example.report("The Listener releases the lock.");
-			lock_example.this_lock.unlock();
+			LockExample.report("The Listener releases the lock.");
+			LockExample.this_lock.unlock();
 		}
 	}
 }
@@ -55,27 +55,27 @@ class SpeakerThread extends Thread {
 
 	public void run() {
 		while (true) {
-			while (0 != lock_example.message) {
+			while (0 != LockExample.message) {
 				try {
-					lock_example
+					LockExample
 							.report("The Speaker waits for the Listener to catch up.");
 					Thread.sleep(30);
 				} catch (InterruptedException ie) {
 				}
 			}
 			counter++;
-			lock_example.report("The Speaker requests the lock.");
-			lock_example.this_lock.lock();
-			lock_example.report("The Speaker acquires the lock.");
-			lock_example
+			LockExample.report("The Speaker requests the lock.");
+			LockExample.this_lock.lock();
+			LockExample.report("The Speaker acquires the lock.");
+			LockExample
 					.report("The Speaker takes a nap--a model for real work it might otherwise do.");
 			try {
 				Thread.sleep((int) (2000 * Math.random()));
 			} catch (InterruptedException ie) {
 			}
-			lock_example.message = counter;
-			lock_example.report("The Speaker releases the lock.");
-			lock_example.this_lock.unlock();
+			LockExample.message = counter;
+			LockExample.report("The Speaker releases the lock.");
+			LockExample.this_lock.unlock();
 		}
 	}
 }
