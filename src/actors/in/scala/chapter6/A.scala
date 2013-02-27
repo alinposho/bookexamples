@@ -7,12 +7,15 @@ object A extends Actor {
   override def act(): Unit = {
     var lastMsg: Option[Symbol] = None;
     loopWhile(lastMsg.isEmpty || lastMsg.get != 'stop) {
-      react {
+      
+      val partial: PartialFunction[Any, Unit] = {
         case 'hello => throw new Exception("Error!")
         case any: Symbol => 
           println("your message: " + any)
           lastMsg = Some(any)
       }
+      
+      react(partial)
     }
   }
   
@@ -24,12 +27,15 @@ object A extends Actor {
     A.start
     
     A ! 'hello
+    println(A.getState)
 
     // Notice that the actor didn't terminate execution after an exception has been
     // raised.
     A ! 'some_message
+    println(A.getState)
     
     A ! 'stop
+    println(A.getState)
   } 
   
 }
