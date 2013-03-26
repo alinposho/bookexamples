@@ -42,7 +42,7 @@ object FuturesAndReactingToTerminationMessages {
       val loader = link {
         react {
           case Download(info) =>
-            throw new Exception("no connection")
+//            throw new Exception("no connection")
             reply(info.downloadImage())
         }: Unit
       }
