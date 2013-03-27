@@ -5,12 +5,11 @@ import scala.actors.Actor._
 
 object LoopWhileEventBasedActorChaining {
 
-  def buildChain(size: Int, next: Actor, lives: Int): Actor = {
-    val a = actor {
+  private def createActor(lives: Int, next: Actor): Actor = {
+    val newActor = actor {
       var n = lives
       loopWhile(n > 0) {
-        n -=
-          1
+        n -= 1
         react {
           case 'Die =>
             val from = sender
@@ -21,8 +20,14 @@ object LoopWhileEventBasedActorChaining {
         }
       }
     }
-    if (size > 0) buildChain(size - 1,
-      a, lives)
+    
+    newActor
+  }
+  
+  def buildChain(size: Int, next: Actor, lives: Int): Actor = {
+    
+    val a = createActor(lives, next);
+    if (size > 0) buildChain(size - 1, a, lives)
     else a
   }
 
@@ -42,7 +47,7 @@ object LoopWhileEventBasedActorChaining {
     println("The actor chain is still waiting for another 'Die message");
 
     // Commenting this line will cause the program to loop indefinitely waiting 
-    // for the actor chain to terminate
+    // for the actor chain to terminate, even though the main method completes!
     firstActor !? 'Die
 
     println("Program exit!")

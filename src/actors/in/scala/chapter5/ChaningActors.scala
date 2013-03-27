@@ -32,7 +32,9 @@ object ChaningActors {
       case 'Ack => println("Killed the actors from the chain!")
     }
 
-    // This will cause the program to run indefinitely
+    // This will cause the program to run indefinitely. Why is that? Well, there are no actors 
+    // to sent a response message back, and the main thread is waiting for a response since we 
+    // used !?
     /*firstActor !? 'Die match {
       case 'Ack => println("Killed the last actor in the chain!")
     }*/
