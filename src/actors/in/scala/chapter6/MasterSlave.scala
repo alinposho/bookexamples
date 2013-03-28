@@ -5,9 +5,7 @@ import scala.actors.Actor
 object Master extends Actor {
 
   override def act() {
-
     Slave ! 'work
-
     react {
       case 'done =>
         println("Master will terminate with an exception!")
@@ -18,8 +16,7 @@ object Master extends Actor {
   def main(args: Array[String]) {
 
     Slave.start
-
-    println(Slave.getState)
+    println("Slave's state: " + Slave.getState)
     
     Master.start
     
