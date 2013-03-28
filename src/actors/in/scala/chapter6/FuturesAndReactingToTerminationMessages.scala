@@ -1,5 +1,6 @@
 package actors.in.scala.chapter6
 
+import scala.actors.Actor.actor
 import scala.actors.Actor.link
 import scala.actors.Actor.loopWhile
 import scala.actors.Actor.react
@@ -42,8 +43,8 @@ object FuturesAndReactingToTerminationMessages {
       val loader = link {
         react {
           case Download(info) =>
-//            throw new Exception("no connection")
-            reply(info.downloadImage())
+            throw new Exception("no connection")
+            reply(info.downloadImage()) // This code won't be reached
         }: Unit
       }
       loader !! Download(info)
@@ -52,18 +53,27 @@ object FuturesAndReactingToTerminationMessages {
     var i = 0
     loopWhile(i < imageInfos.size) {
       i += 1
-      dataFutures(i - 1).inputChannel.react {
+      dataFutures(i - 1).inputChannel
+      react {
         case data @ ImageData(_) =>
           renderImage(data)
         case Exit(from, UncaughtException(_, Some(Download(info)), _, _, cause)) =>
           println("Couldn't download image " + info + " because of " + cause)
       }
     }
-    println("OK, all images rendered.") 
+    println("OK, all images rendered.")
+  }
+
+  def invokeImageRenderinFromAnActor() {
+    // In case renderImages is not invoked from an actor an exception will be 
+    // raised at line "dataFutures(i - 1).inputChannel".
+    val mainActor = actor {
+      renderImages("alin.com")
+    }
   }
 
   def main(args: Array[String]) {
-    renderImages("alin.com")
+	  invokeImageRenderinFromAnActor()
   }
 
 }
