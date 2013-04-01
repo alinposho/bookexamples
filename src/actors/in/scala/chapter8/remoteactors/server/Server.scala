@@ -1,10 +1,11 @@
 package actors.in.scala.chapter8.remoteactors.server
 
 import scala.actors.Actor
-import scala.actors.remote.RemoteActor.{ alive, register }
+import scala.actors.remote.RemoteActor.{ alive, register, classLoader }
 import actors.in.scala.chapter8.remoteactors.common.Start
 import actors.in.scala.chapter8.remoteactors.common.Stop
 import actors.in.scala.chapter8.remoteactors.common.Constants
+import scala.actors.remote.RemoteActor
 
 class Server extends Actor {
 
@@ -12,9 +13,9 @@ class Server extends Actor {
 
   override def act() {
     println("Registering server.");
-    alive(Constants.PORT)
-    register('Server, this)
-    
+    alive(Constants.SERVER_PORT)
+    register(Constants.SERVER_NAME, this)
+
     println("Server up and running.");
 
     loop {
@@ -29,7 +30,11 @@ class Server extends Actor {
         case Stop =>
           println("Remote server started " + numOfActorsStarted +
             " actors. Preparing to shutdown")
+          reply()
           exit()
+          println("Server should have been shut down by now.")
+          System.exit(0)
+        case any => println("Received message: " + any);
       }
     }
 
