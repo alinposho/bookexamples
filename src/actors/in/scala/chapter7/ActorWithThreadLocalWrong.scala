@@ -4,6 +4,10 @@ import scala.actors.Actor.actor
 import scala.actors.Actor.react
 import scala.actors.Actor.sender
 
+/**
+ * Executing this program a number of times will cause it to print "John Doe"
+ * then "john" for a limited number of times.
+ */
 object ActorWithThreadLocalWrong extends App {
 
   val tname = new ThreadLocal[String] {
