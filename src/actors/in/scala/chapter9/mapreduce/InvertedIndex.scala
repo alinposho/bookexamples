@@ -5,9 +5,12 @@ import scala.actors.Actor.actor
 import scala.actors.Actor.receive
 import java.io.File
 import scala.actors.Actor
+import scala.actors.scheduler.DaemonScheduler
 
 object InvertedIndex extends Actor {
 
+  override def scheduler = DaemonScheduler
+  
   override def act() {
     react {
       case InvertedIndexInput(input) =>

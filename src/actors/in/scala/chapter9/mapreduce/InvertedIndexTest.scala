@@ -4,11 +4,13 @@ import org.scalatest.junit.JUnitRunner
 import org.junit.runner.RunWith
 import org.scalatest.FunSuite
 import scala.actors.Future
+import scala.actors.Actor.actor
 
 @RunWith(classOf[JUnitRunner])
 class InvertedIndexTest extends FunSuite {
 
   test("InvertedInxed with two elements in the input list") {
+
     // Prepare
     InvertedIndex.start
     val input = List(("file1", List("word1", "word1", "word3")),
@@ -25,6 +27,7 @@ class InvertedIndexTest extends FunSuite {
 
         assert(expectedResult === wordFilesMap)
     }
+    
   }
 
   test("InvertedInxed with one element list as input") {
