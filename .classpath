@@ -6,9 +6,10 @@
 	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_COMPILER_CONTAINER"/>
 	<classpathentry kind="lib" path="lib_managed/jars/junit/junit/junit-4.10.jar"/>
 	<classpathentry kind="lib" path="lib_managed/jars/org.hamcrest/hamcrest-core/hamcrest-core-1.1.jar"/>
-	<classpathentry kind="lib" path="lib_managed/jars/org.scalatest/scalatest_2.9.2/scalatest_2.9.2-1.8.jar"/>
 	<classpathentry kind="lib" path="lib_managed/jars/org.html.parser/htmlparser-1.6.jar"/>
 	<classpathentry kind="lib" path="lib_managed/jars/scalacheck/scalacheck_2.8.1-1.8.jar"/>
 	<classpathentry kind="lib" path="lib_managed/jars/specs/specs2_2.10-1.13.jar"/>
+	<classpathentry kind="lib" path="lib_managed/jars/org.scalatest/scalatest_2.10-1.9.1.jar"/>
+	<classpathentry kind="lib" path="lib_managed/jars/org.scalatest/scalatest_2.9.2-1.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
