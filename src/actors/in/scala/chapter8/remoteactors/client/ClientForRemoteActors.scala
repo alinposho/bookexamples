@@ -1,5 +1,6 @@
 package actors.in.scala.chapter8.remoteactors.client
 
+import scala.actors.Actor.actor
 import scala.actors.remote.RemoteActor.{ select, classLoader }
 import scala.actors.remote.Node
 import actors.in.scala.chapter8.remoteactors.common.{ Start, Stop, EchoActor, Constants }
@@ -11,12 +12,22 @@ object ClientForRemoteActors {
   def main(args: Array[String]) {
 
     println("Starting client");
-    
-    val server = getReferenceToServer()
-    instructServerToCreateEchoActor(server)
-    val echo = getReferenceToRemoteEchoActor()
-    val resp = sendMessageToRemoteActor(echo, "hello")
-    shutdownServer(server)
+    // Not running the business logic on an actor will prevent the client
+    // to gracefully shutdown after executing the last line of code. Only
+    // a call to sys.exit() will work for the client
+    runBusinessLogicOnActorThread
+
+  }
+
+  private def runBusinessLogicOnActorThread: Unit = {
+
+    actor {
+      val server = getReferenceToServer()
+      instructServerToCreateEchoActor(server)
+      val echo = getReferenceToRemoteEchoActor()
+      val resp = sendMessageToRemoteActor(echo, "hello")
+      shutdown(server)
+    }
   }
 
   private def getReferenceToServer(): scala.actors.AbstractActor = {
@@ -48,12 +59,12 @@ object ClientForRemoteActors {
     println("Remote start client received \"" + resp + "\"")
     resp
   }
-  
-  private def shutdownServer(server: scala.actors.AbstractActor): Unit = {
 
-    println("Sending shutdown request to server.");
-    server !? Stop
-    println("Server was shutdown.");
+  private def shutdown(remoteActor: scala.actors.AbstractActor): Unit = {
+
+    println("Sending shutdown request to remote actor.");
+    remoteActor !? Stop
+    println("Remote Actor was shutdown.");
   }
 
 }
