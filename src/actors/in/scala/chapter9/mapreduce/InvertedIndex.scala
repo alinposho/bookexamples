@@ -7,7 +7,7 @@ import java.io.File
 import scala.actors.Actor
 import scala.actors.scheduler.DaemonScheduler
 
-object InvertedIndex extends Actor {
+class InvertedIndex extends Actor {
 
   override def scheduler = DaemonScheduler
   
@@ -16,13 +16,14 @@ object InvertedIndex extends Actor {
       case InvertedIndexInput(input) =>
         val result = invertedIndex(input)
         sender ! result
+        exit()
       case any =>
         println("Unknown message! The actor will terminate")
         reply()
     }
   }
 
-  def invertedIndex(input: List[(String, List[String])]) = {
+  private def invertedIndex(input: List[(String, List[String])]) = {
     if (input.isEmpty) Map()
     else {
       val master = self

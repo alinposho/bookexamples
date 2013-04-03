@@ -3,10 +3,11 @@ package actors.in.scala.chapter9.mapreduce
 object InvertedIndexMain {
   
   def main(args: Array[String]) {
-    InvertedIndex.start
+    val invertedIndex = new InvertedIndex()
+    invertedIndex.start
     val input = List(("file1", List("word1, word1, word3")), ("file2", List("word4", "word1", "word5", "word2")))
 
-    val result = InvertedIndex !! InvertedIndexInput(input)
+    val result = invertedIndex !! InvertedIndexInput(input)
 
     result() match {
       case list: Map[String, List[String]] =>
