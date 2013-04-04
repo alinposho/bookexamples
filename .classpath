@@ -9,7 +9,6 @@
 	<classpathentry kind="lib" path="lib_managed/jars/org.html.parser/htmlparser-1.6.jar"/>
 	<classpathentry kind="lib" path="lib_managed/jars/scalacheck/scalacheck_2.8.1-1.8.jar"/>
 	<classpathentry kind="lib" path="lib_managed/jars/specs/specs2_2.10-1.13.jar"/>
-	<classpathentry kind="lib" path="lib_managed/jars/org.scalatest/scalatest_2.9.2-1.8.jar"/>
 	<classpathentry kind="lib" path="lib_managed/jars/org.scalatest/scalatest_2.10-1.9.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

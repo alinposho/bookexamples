@@ -15,8 +15,8 @@ class InvertedIndexTest extends FunSuite {
     // Exercise
     val result = invertedIndex !! InvertedIndexInput(List())
     // Verify
-    result match {
-      case result: Map[String, List[String]] => assert(result.isEmpty)
+    result() match {
+      case emptyMap: Map[String, List[String]] => assert(emptyMap.isEmpty)
     }
   }
 
@@ -55,7 +55,7 @@ class InvertedIndexTest extends FunSuite {
         
         for((word, files) <- wordFilesMapping) {
           assert(expectedResult(word).size === files.size)
-          files.foreach(assert(expectedResult(word).contains(_)))
+          assert(expectedResult(word).forall(files.contains(_)), files + "!=" + expectedResult(word))
         }
       }
     }
