@@ -2,11 +2,12 @@ package chapter14.tests.propertybased
 
 import chapter10.puttingitalltogether.Element.elem
 import org.scalatest.prop.Checkers
-import org.scalacheck.Prop._
+//import org.scalacheck.Prop._
 import org.junit.runner.RunWith
 import org.scalatest.WordSpec
 import org.scalatest.junit.JUnitRunner
 
+// This will not work unless the scalacheck jar is added to the build path.
 @RunWith(classOf[JUnitRunner])
 class ElementSpec extends WordSpec with Checkers {
 
