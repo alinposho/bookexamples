@@ -16,8 +16,17 @@ class InvertedIndexTest extends FunSuite {
     val result = invertedIndex !! InvertedIndexInput(List())
     // Verify
     result() match {
-      case emptyMap: Map[String, List[String]] => assert(emptyMap.isEmpty)
+      case emptyMap: Map[_, _] => assert(emptyMap.isEmpty)
     }
+  }
+
+  test("InvertedInxed with one element list as input") {
+    // Prepare
+    val input = List(("file", List("word1", "word1", "word3")))
+    val expectedResult = Map("word1" -> List("file"), "word3" -> List("file"))
+
+    // Execute and Verify
+    runTestWith(input, expectedResult)
   }
 
   test("InvertedInxed with two elements in the input list") {
@@ -32,31 +41,16 @@ class InvertedIndexTest extends FunSuite {
     runTestWith(input, expectedResult)
   }
 
-  test("InvertedInxed with one element list as input") {
-    // Prepare
-    val input = List(("file", List("word1", "word1", "word3")))
-    val expectedResult = Map("word1" -> List("file"), "word3" -> List("file"))
-
-    // Execute and Verify
-    runTestWith(input, expectedResult)
-  }
-
   private def runTestWith(input: List[(String, List[String])], expectedResult: Map[String, List[String]]) {
     // Prepare
     val invertedIndex = createAndStartMasterActor
-
     // Exercise
     val result = invertedIndex !! InvertedIndexInput(input)
-
     // Verify
     result() match {
-      case wordFilesMapping: Map[String, List[String]] => {
+      case wordFilesMapping: Map[_, _] => {
         assert(expectedResult.size === wordFilesMapping.size)
-        
-        for((word, files) <- wordFilesMapping) {
-          assert(expectedResult(word).size === files.size)
-          assert(expectedResult(word).forall(files.contains(_)), files + "!=" + expectedResult(word))
-        }
+        assertWordToFilesAssociationMatchIgnoringOrdering(expectedResult, wordFilesMapping)
       }
     }
   }
@@ -65,6 +59,16 @@ class InvertedIndexTest extends FunSuite {
     val invertedIndex = new InvertedIndex()
     invertedIndex.start
     invertedIndex
+  }
+  
+  private def assertWordToFilesAssociationMatchIgnoringOrdering(expectedResult: Map[String,List[String]], wordFilesMapping: Map[_,_]): Unit = {
+    for ((word, files) <- wordFilesMapping) {
+      val wordAsString = word.asInstanceOf[String]
+      val listOfFiles = files.asInstanceOf[List[String]]
+      assert(expectedResult(wordAsString).size === listOfFiles.size)
+      assert(expectedResult(wordAsString).forall(listOfFiles.contains(_)),
+        files + "!=" + expectedResult(wordAsString))
+    }
   }
 
 }
