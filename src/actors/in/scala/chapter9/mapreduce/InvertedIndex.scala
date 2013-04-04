@@ -38,10 +38,13 @@ class InvertedIndex extends Actor {
   private def map(input: List[(String, List[String])], master: Actor): List[Actor] = {
     for ((file, words) <- input) yield {
       actor {
-        val wordsAndFiles = for (word <- words) yield (word, file)
-        master ! Intermediate(wordsAndFiles)
+        master ! Intermediate(mapIndex(file, words))
       }
     }
+  }
+  
+  private def mapIndex(key: String, values: List[String]): List[(String, String)] = {
+    for (value <- values) yield (value, key)
   }
 
   private def collectIntermediateResults(input: List[(String, List[String])]): List[(String, String)] = {
