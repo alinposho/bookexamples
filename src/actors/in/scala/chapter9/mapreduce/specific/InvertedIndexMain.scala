@@ -1,4 +1,6 @@
-package actors.in.scala.chapter9.mapreduce
+package actors.in.scala.chapter9.mapreduce.specific
+
+import actors.in.scala.chapter9.mapreduce.common.InvertedIndexInput
 
 object InvertedIndexMain {
 

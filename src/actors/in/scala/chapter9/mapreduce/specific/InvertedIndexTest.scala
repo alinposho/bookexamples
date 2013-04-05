@@ -1,13 +1,12 @@
-package actors.in.scala.chapter9.mapreduce.generic
+package actors.in.scala.chapter9.mapreduce.specific
 
-import org.scalatest.junit.JUnitRunner
 import org.junit.runner.RunWith
 import org.scalatest.FunSuite
-import scala.actors.Future
-import scala.actors.Actor.actor
+import org.scalatest.junit.JUnitRunner
+import actors.in.scala.chapter9.mapreduce.common.InvertedIndexInput
 
 @RunWith(classOf[JUnitRunner])
-class InvertedIndexGenericTest extends FunSuite {
+class InvertedIndexTest extends FunSuite {
 
   test("InvertedInxed with empty input should not raise exception") {
     // Prepare
@@ -55,8 +54,8 @@ class InvertedIndexGenericTest extends FunSuite {
     }
   }
 
-  private def createAndStartMasterActor(): InvertedIndexGeneric = {
-    val invertedIndex = new InvertedIndexGeneric()
+  private def createAndStartMasterActor(): InvertedIndex = {
+    val invertedIndex = new InvertedIndex()
     invertedIndex.start
     invertedIndex
   }

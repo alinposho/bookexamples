@@ -1,14 +1,14 @@
 package actors.in.scala.chapter9.mapreduce.generic
 
-import scala.actors.Actor.self
-import scala.actors.Actor.actor
-import scala.actors.Actor.receive
-import java.io.File
 import scala.actors.Actor
 import scala.actors.scheduler.DaemonScheduler
 
+import actors.in.scala.chapter9.mapreduce.common.InvertedIndexInput
+
 class InvertedIndexGeneric extends Actor {
 
+  case class Intermediate(list: List[(String, String)])
+  
   override def scheduler = DaemonScheduler
 
   override def act() {
@@ -35,9 +35,4 @@ class InvertedIndexGeneric extends Actor {
     files.distinct
 
 }
-
-case class InvertedIndexInput(list: List[(String, List[String])])
-case class Intermediate(list: List[(String, String)])
-
-
 
