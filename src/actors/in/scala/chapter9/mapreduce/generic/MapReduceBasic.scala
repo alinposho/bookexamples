@@ -16,6 +16,7 @@ class MapReduceBasic(master: Actor) {
   }
 
   case class Intermediate[K2, V2](list: List[(K2, V2)])
+  
   def runMappingOnWorkerActor[K, V, K2, V2](input: List[(K, V)], mapping: (K, V) => List[(K2, V2)]): List[Actor] = {
     val workers = for ((key, value) <- input) yield {
       actor {
@@ -50,5 +51,3 @@ class MapReduceBasic(master: Actor) {
   }
 
 }
-
-case class StartMapReduce[K, V](input: List[(K, V)])
