@@ -10,7 +10,6 @@ object ServerMain {
     RemoteActor.classLoader = Start.getClass().getClassLoader()// hack!
     
     val server = new Server
-//    getClass().getClassLoader() // hack!
     server.start()
   }
 
