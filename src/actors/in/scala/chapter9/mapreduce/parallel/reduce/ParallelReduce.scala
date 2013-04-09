@@ -9,21 +9,8 @@ class ParallelReduce(val master: Actor) extends MapReduceBasic(master) {
 
   protected override def reduce[K2, V2](reducing: (K2, List[V2]) => List[V2], dict: Map[K2, List[V2]]): Map[K2, List[V2]] = {
 
-    val reducers = for ((key, values) <- dict) yield {
-      actor {
-        master ! Reduced(key, reducing(key, values))
-      }
-    }
-
-    var result = Map[K2, List[V2]]()
-    for (reducer <- reducers) {
-      receive {
-        case Reduced(key,values: List[_]) => 
-          val keyCast = key.asInstanceOf[K2] 
-          val valuesCast = values.asInstanceOf[List[V2]]
-          result += (keyCast-> valuesCast)
-      }
-    }
+    val reducers = createAndRunReducers(reducing, dict)
+    val result:Map[K2, List[V2]] = assembleReduceResult(reducers)
     result
   }
 
@@ -34,6 +21,19 @@ class ParallelReduce(val master: Actor) extends MapReduceBasic(master) {
       }
     }
     reducers
+  }
+  
+  private def assembleReduceResult[K2, V2](reducers: Iterable[Actor]): Map[K2,List[V2]] = {
+    var result = Map[K2, List[V2]]()
+    for (reducer <- reducers) {
+      receive {
+        case Reduced(key,values: List[_]) => 
+          val keyCast = key.asInstanceOf[K2] 
+          val valuesCast = values.asInstanceOf[List[V2]]
+          result += (keyCast-> valuesCast)
+      }
+    }
+    result
   }
 }
 
