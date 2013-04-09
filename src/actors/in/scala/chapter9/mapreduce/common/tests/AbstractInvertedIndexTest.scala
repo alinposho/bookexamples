@@ -5,7 +5,7 @@ import actors.in.scala.chapter9.mapreduce.specific.InvertedIndex
 import actors.in.scala.chapter9.mapreduce.common.InvertedIndexInput
 import scala.actors.Actor
 
-trait InvertedIndexIntegrationTest extends FunSuite {
+trait AbstractInvertedIndexTest extends FunSuite {
 
   test("InvertedInxed with empty input should not raise exception") {
     // Prepare

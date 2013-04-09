@@ -1,0 +1,16 @@
+package actors.in.scala.chapter9.mapreduce.parallel.reduce
+
+import scala.actors.Actor
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
+import actors.in.scala.chapter9.mapreduce.common.tests.AbstractInvertedIndexTest
+
+@RunWith(classOf[JUnitRunner])
+class InvertedIndexParallelReduceTest extends AbstractInvertedIndexTest {
+
+  protected override def createAndStartMasterActor(): Actor = {
+    val invertedIndex = new InvertedIndexParallelReduce()
+    invertedIndex.start
+    invertedIndex
+  }
+}

@@ -43,7 +43,7 @@ class MapReduceBasic(master: Actor) {
     dict
   }
 
-  private def reduce[K2, V2](reducing: (K2, List[V2]) => List[V2], dict: Map[K2, List[V2]]): Map[K2, List[V2]] = {
+  protected def reduce[K2, V2](reducing: (K2, List[V2]) => List[V2], dict: Map[K2, List[V2]]): Map[K2, List[V2]] = {
     var result = Map[K2, List[V2]]()
     for ((key, value) <- dict)
       result += (key -> reducing(key, value))

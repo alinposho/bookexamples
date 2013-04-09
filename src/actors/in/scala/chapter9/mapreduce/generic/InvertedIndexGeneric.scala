@@ -8,13 +8,13 @@ import actors.in.scala.chapter9.mapreduce.common.InvertedIndexInput
 class InvertedIndexGeneric extends Actor {
 
   case class Intermediate(list: List[(String, String)])
-  
+
   override def scheduler = DaemonScheduler
+  protected val mapReduceStrategy = new MapReduceBasic(this)
 
   override def act() {
     react {
       case InvertedIndexInput(input) =>
-        val mapReduceStrategy = new MapReduceBasic(this)
         val result = mapReduceStrategy.mapReduceBasic[String, List[String], String, String](input, mapping, reduceIndex)
         sender ! result
         exit()
