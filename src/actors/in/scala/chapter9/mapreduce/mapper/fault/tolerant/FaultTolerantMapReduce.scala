@@ -9,12 +9,11 @@ import scala.actors.AbstractActor
 class FaultTolerantMapReduce[K, V](master: Actor) extends ParallelReduce(master) {
 
   override def mapReduceBasic[K, V, K2, V2](input: List[(K, V)],
-    mapping: (K, V) => List[(K2, V2)],
-    reducing: (K2, List[V2]) => List[V2]): Map[K2, List[V2]] = {
-    
+		  									mapping: (K, V) => List[(K2, V2)],
+		  									reducing: (K2, List[V2]) => List[V2]): Map[K2, List[V2]] = {
     self.trapExit = true
     val mappers = runMappingOnWorkerActors(input, mapping)
-    val intermediateResults = collectIntermediateResults[K, V, K2, V2](mappers)
+    val intermediateResults = collectIntermediateResults[K, V, K2, V2](mappers, mapping)
     val dict = groupIntermediatesByKeys(intermediateResults)
     reduce(reducing, dict)
   }
@@ -30,6 +29,8 @@ class FaultTolerantMapReduce[K, V](master: Actor) extends ParallelReduce(master)
         case Exit(from, 'normal) => nLeft -= 1
         case Exit(from, reason) =>
           val (key, value) = workers(from)
+          println("Mapper for key " + key + " value " + value + " crashed!");
+          println("Restarting mapper.");
           spawnMapper(key, value, mapping)
       }
     }

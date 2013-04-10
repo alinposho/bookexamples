@@ -26,7 +26,9 @@ class MapReduce(master: Actor) {
   }
 
   protected def spawnMapper[K, V, K2, V2](key: K, value: V, mapping: (K, V) => List[(K2, V2)]): (Actor, (K, V)) = {
-    val mapper = actor {
+    // Using "link" instead of "actor" assures that the child actors are linked to the master
+    // otherwise, the master will not receive termination messages from child actors
+    val mapper = link {
       master ! Intermediate(mapping(key, value))
     }
     (mapper, (key, value))
