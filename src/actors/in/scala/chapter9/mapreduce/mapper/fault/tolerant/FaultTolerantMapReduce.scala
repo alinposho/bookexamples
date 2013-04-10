@@ -6,7 +6,7 @@ import actors.in.scala.chapter9.mapreduce.parallel.reduce.ParallelReduce
 import scala.actors.Exit
 import scala.actors.AbstractActor
 
-class MapReduceFaultTolerant[K, V](master: Actor) extends ParallelReduce(master) {
+class FaultTolerantMapReduce[K, V](master: Actor) extends ParallelReduce(master) {
 
   override def mapReduceBasic[K, V, K2, V2](input: List[(K, V)],
     mapping: (K, V) => List[(K2, V2)],

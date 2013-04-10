@@ -10,8 +10,12 @@ class InvertedIndexGeneric extends Actor {
   case class Intermediate(list: List[(String, String)])
 
   override def scheduler = DaemonScheduler
-  protected val mapReduceStrategy = new MapReduceBasic(this)
-
+  private var mapReduceStrategy = new MapReduce(this)
+  
+  def setMapReduceStrategy(mapReduceStrategy: MapReduce) {
+    this.mapReduceStrategy = mapReduceStrategy
+  }
+  
   override def act() {
     react {
       case InvertedIndexInput(input) =>

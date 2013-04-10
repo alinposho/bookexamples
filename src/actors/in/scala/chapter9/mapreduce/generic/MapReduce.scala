@@ -4,7 +4,7 @@ import scala.actors.Actor
 import scala.actors.Actor._
 import scala.actors.AbstractActor
 
-class MapReduceBasic(master: Actor) {
+class MapReduce(master: Actor) {
 
   def mapReduceBasic[K, V, K2, V2](input: List[(K, V)],
     mapping: (K, V) => List[(K2, V2)],

@@ -1,11 +1,11 @@
 package actors.in.scala.chapter9.mapreduce.parallel.reduce
 
-import actors.in.scala.chapter9.mapreduce.generic.MapReduceBasic
+import actors.in.scala.chapter9.mapreduce.generic.MapReduce
 import scala.actors.Actor
 import scala.actors.Actor.actor
 import scala.actors.Actor.receive
 
-class ParallelReduce(master: Actor) extends MapReduceBasic(master) {
+class ParallelReduce(master: Actor) extends MapReduce(master) {
 
   protected override def reduce[K2, V2](reducing: (K2, List[V2]) => List[V2], dict: Map[K2, List[V2]]): Map[K2, List[V2]] = {
 
