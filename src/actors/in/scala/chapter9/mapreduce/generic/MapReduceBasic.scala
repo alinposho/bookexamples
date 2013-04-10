@@ -2,6 +2,7 @@ package actors.in.scala.chapter9.mapreduce.generic
 
 import scala.actors.Actor
 import scala.actors.Actor._
+import scala.actors.AbstractActor
 
 class MapReduceBasic(master: Actor) {
 
@@ -9,24 +10,29 @@ class MapReduceBasic(master: Actor) {
     mapping: (K, V) => List[(K2, V2)],
     reducing: (K2, List[V2]) => List[V2]): Map[K2, List[V2]] = {
 
-    val workers = runMappingOnWorkerActor(input, mapping)
-    val intermediateResults = collectIntermediateResults[K2, V2](workers)
+    val mappers = runMappingOnWorkerActors(input, mapping)
+    val intermediateResults = collectIntermediateResults[K, V, K2, V2](mappers)
     val dict = groupIntermediatesByKeys(intermediateResults)
     reduce(reducing, dict)
   }
 
   case class Intermediate[K2, V2](list: List[(K2, V2)])
-  
-  def runMappingOnWorkerActor[K, V, K2, V2](input: List[(K, V)], mapping: (K, V) => List[(K2, V2)]): List[Actor] = {
-    val workers = for ((key, value) <- input) yield {
-      actor {
-        master ! Intermediate(mapping(key, value))
-      }
+
+  protected def runMappingOnWorkerActors[K, V, K2, V2](input: List[(K, V)], mapping: (K, V) => List[(K2, V2)]): Map[AbstractActor, (K, V)] = {
+    val mappers = for ((key, value) <- input) yield {
+      spawnMapper(key, value, mapping)
     }
-    workers
+    mappers.toMap
   }
 
-  private def collectIntermediateResults[K2, V2](workers: List[Actor]): List[(K2, V2)] = {
+  protected def spawnMapper[K, V, K2, V2](key: K, value: V, mapping: (K, V) => List[(K2, V2)]): (Actor, (K, V)) = {
+    val mapper = actor {
+      master ! Intermediate(mapping(key, value))
+    }
+    (mapper, (key, value))
+  }
+
+  protected def collectIntermediateResults[K, V, K2, V2](workers: Map[AbstractActor, (K, V)]): List[(K2, V2)] = {
     var intermediateResults = List[(K2, V2)]()
     for (worker <- workers) {
       receive {
@@ -36,7 +42,7 @@ class MapReduceBasic(master: Actor) {
     intermediateResults
   }
 
-  private def groupIntermediatesByKeys[K2, V2](intermediateResults: List[(K2, V2)]): scala.collection.immutable.Map[K2, List[V2]] = {
+  protected def groupIntermediatesByKeys[K2, V2](intermediateResults: List[(K2, V2)]): Map[K2, List[V2]] = {
     var dict = Map[K2, List[V2]]() withDefault (k => List())
     for ((key, value) <- intermediateResults)
       dict += (key -> (value :: dict(key)))

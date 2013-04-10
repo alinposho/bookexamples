@@ -5,7 +5,7 @@ import scala.actors.Actor
 import scala.actors.Actor.actor
 import scala.actors.Actor.receive
 
-class ParallelReduce(val master: Actor) extends MapReduceBasic(master) {
+class ParallelReduce(master: Actor) extends MapReduceBasic(master) {
 
   protected override def reduce[K2, V2](reducing: (K2, List[V2]) => List[V2], dict: Map[K2, List[V2]]): Map[K2, List[V2]] = {
 
