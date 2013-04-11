@@ -11,7 +11,7 @@ class CrashingMapperMapReduce[K, V](master: Actor) extends FaultTolerantMapReduc
   var counter = 0;
 
   protected override def spawnMapper[K, V, K2, V2](key: K, value: V, mapping: (K, V) => List[(K2, V2)]): (Actor, (K, V)) = {
-    val mapper = actor {
+    val mapper = link {
       counter += 1
       if (counter % 2 == 0) {
         println("Mapper for key " + key + " value " + value + " will crash!");
