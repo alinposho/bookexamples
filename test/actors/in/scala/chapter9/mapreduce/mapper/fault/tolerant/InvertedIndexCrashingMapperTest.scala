@@ -1,6 +1,6 @@
 package actors.in.scala.chapter9.mapreduce.mapper.fault.tolerant
 
-import actors.in.scala.chapter9.mapreduce.common.tests.AbstractInvertedIndexTest
+import actors.in.scala.chapter9.mapreduce.common.AbstractInvertedIndexTest
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import scala.actors.Actor

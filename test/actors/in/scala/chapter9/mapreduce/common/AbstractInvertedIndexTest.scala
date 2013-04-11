@@ -1,8 +1,6 @@
-package actors.in.scala.chapter9.mapreduce.common.tests
+package actors.in.scala.chapter9.mapreduce.common
 
 import org.scalatest.FunSuite
-import actors.in.scala.chapter9.mapreduce.specific.InvertedIndex
-import actors.in.scala.chapter9.mapreduce.common.InvertedIndexInput
 import scala.actors.Actor
 
 trait AbstractInvertedIndexTest extends FunSuite {

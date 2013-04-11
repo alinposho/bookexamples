@@ -2,7 +2,7 @@ package actors.in.scala.chapter9.mapreduce.generic
 
 import scala.actors.Actor
 import scala.actors.scheduler.DaemonScheduler
-
+import actors.in.scala.chapter9.mapreduce.common.InvertedIndexInput
 import actors.in.scala.chapter9.mapreduce.common.InvertedIndexInput
 
 class InvertedIndexGeneric extends Actor {
