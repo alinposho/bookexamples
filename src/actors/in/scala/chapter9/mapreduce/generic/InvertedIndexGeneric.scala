@@ -19,7 +19,7 @@ class InvertedIndexGeneric extends Actor {
   override def act() {
     react {
       case InvertedIndexInput(input) =>
-        val result = mapReduceStrategy.mapReduceBasic[String, List[String], String, String](input, mapping, reduceIndex)
+        val result = mapReduceStrategy.mapReduce[String, List[String], String, String](input, mapping, reduceIndex)
         sender ! result
         exit()
       case any =>

@@ -8,7 +8,6 @@ import scala.actors.Actor.receive
 class ParallelReduce(master: Actor) extends MapReduce(master) {
 
   protected override def reduce[K2, V2](reducing: (K2, List[V2]) => List[V2], dict: Map[K2, List[V2]]): Map[K2, List[V2]] = {
-
     val reducers = createAndRunReducers(reducing, dict)
     val result:Map[K2, List[V2]] = assembleReduceResult(reducers)
     result

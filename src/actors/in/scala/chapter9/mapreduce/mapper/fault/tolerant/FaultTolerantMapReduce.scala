@@ -8,9 +8,9 @@ import scala.actors.AbstractActor
 
 class FaultTolerantMapReduce[K, V](master: Actor) extends ParallelReduce(master) {
 
-  override def mapReduceBasic[K, V, K2, V2](input: List[(K, V)],
-		  									mapping: (K, V) => List[(K2, V2)],
-		  									reducing: (K2, List[V2]) => List[V2]): Map[K2, List[V2]] = {
+  override def mapReduce[K, V, K2, V2](input: List[(K, V)], 
+		  								mapping: (K, V) => List[(K2, V2)], 
+		  								reducing: (K2, List[V2]) => List[V2]): Map[K2, List[V2]] = {
     self.trapExit = true
     val mappers = runMappingOnWorkerActors(input, mapping)
     val intermediateResults = collectIntermediateResults[K, V, K2, V2](mappers, mapping)
