@@ -1,11 +1,11 @@
-package actors.in.scala.chapter9.broadcasting
+package actors.in.scala.chapter9.broadcasting.common
 
 import scala.actors.Actor
 
 abstract class BroadcastActor extends Actor {
 
   @volatile var isBroken = false
-  private var canRun = true;
+  protected var canRun = true;
   private var counter = 0L
 
   protected def broadcast(message: BSend) = {
