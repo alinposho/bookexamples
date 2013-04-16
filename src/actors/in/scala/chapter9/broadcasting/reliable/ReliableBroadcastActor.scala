@@ -30,6 +30,5 @@ class ReliableBroadcastActor extends BroadcastActor {
       for (a <- msg.recipients.take(2)) a ! msg
       println("error at " + this)
     }
-    reply()
   }
 }
