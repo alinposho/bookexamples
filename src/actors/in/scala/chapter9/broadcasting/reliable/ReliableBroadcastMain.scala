@@ -15,12 +15,12 @@ object ReliableBroadcastMain {
     a4.start()
 
     val actors: Set[Actor] = Set(a1, a2, a3, a4)
-    // We need to wait for the message to arrive at the destination and for the response, otherwise, the actors will 
-    // not have enough time to do their work and nothing will be printed at the output.
-    a1 !? Broadcast("Hello!", actors)
+    a1 ! Broadcast("Hello!", actors)
+    waitForMessageToBeBroadcast
 
     a1.isBroken = true
-    a1 !? Broadcast("Hello again!", Set(a1, a2, a3, a4)) 
+    a1 ! Broadcast("Hello again!", Set(a1, a2, a3, a4)) 
+    waitForMessageToBeBroadcast
 
     stopActors(actors)
   }
@@ -29,5 +29,9 @@ object ReliableBroadcastMain {
     for (a <- actors) {
       a ! 'stop
     }
+  }
+  
+  private def waitForMessageToBeBroadcast: Unit = {
+    Thread.sleep(2000)
   }
 }
