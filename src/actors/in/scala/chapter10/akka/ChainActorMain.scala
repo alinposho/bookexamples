@@ -6,8 +6,13 @@ import akka.actor.Props
 import akka.pattern.ask
 import akka.util.Timeout
 import scala.concurrent.duration._
+import scala.concurrent.ExecutionContext
+import scala.actors.threadpool.ThreadPoolExecutor
 
 object ChainActorMain {
+  
+  implicit val ec = ExecutionContext.global
+  
   private val system = ActorSystem("MySystem")
 
   def buildChain(size: Int, next: Option[ActorRef]): ActorRef = {
