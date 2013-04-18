@@ -9,6 +9,7 @@ import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext
 import scala.actors.threadpool.ThreadPoolExecutor
 import java.util.concurrent.Executors
+import scala.concurrent.Await
 
 class MasterActor(noOfChildActors: Int) extends Actor {
 
@@ -18,14 +19,18 @@ class MasterActor(noOfChildActors: Int) extends Actor {
   private val system = ActorSystem("MySystem")
   private val first = buildChain(noOfChildActors, None)
 
+  private var from: ActorRef = null;
+  
   override def receive = {
     case 'Start => {
+      from = sender
       println("Sending 'Die message to the first actor in the chain.")
       first ! 'Die
     }
     case 'Ack =>
       println(this + " received 'Ack from " + sender)
       println("OK, all actors died.")
+      from ! 'Ack
   }
 
   def buildChain(size: Int, next: Option[ActorRef]): ActorRef = {
@@ -47,9 +52,22 @@ object ActorChainMain {
 
     implicit val timeout = Timeout(5 seconds)
 
-    val future = masterActor ? 'Start
-    future onSuccess {
+    // This doesn't work
+//    val future = masterActor ? 'Start
+//    future onSuccess {
+//      case 'Ack =>
+//        println("All actor have been killed!")
+//    }
+
+    val future = ask(masterActor, 'Start)
+
+    val result = Await.result(future, 10 seconds)
+    result match {
       case 'Ack => println("All actor have been killed!")
+      case _ => println("Something went terribly wrong!");
     }
+
+    // For some reason actors do not shutdown gracefully
+    exit()
   }
 }
