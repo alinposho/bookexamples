@@ -10,16 +10,18 @@ class ChainActor(next: Option[ActorRef]) extends Actor {
 
   override def receive = {
     case 'Die =>
+      println(this + " received 'Die from " + sender)
+      from = sender
       if (next.isEmpty) {
-        from = sender
         from ! 'Ack
         exit
       } else {
+        println(this + " sending 'Die to " + next.get)
         next.get ! 'Die
       }
     case 'Ack =>
+      println(this + " received 'Ack from " + sender)
       from ! 'Ack
-      exit()
   }
 
 }
