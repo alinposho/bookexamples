@@ -22,13 +22,6 @@ class MasterActor(noOfChildActors: Int) extends Actor {
     case 'Start => {
       println("Sending 'Die message to the first actor in the chain.")
       first ! 'Die
-
-      //      implicit val askTimeout = Timeout(1.second)
-      //      val future = first ? 'Die
-      //      future.collect {
-      //        case 'Ack => println("All actor have been killed!")
-      //      }
-      //      sender ! ('AllActorsDead)
     }
     case 'Ack =>
       println(this + " received 'Ack from " + sender)

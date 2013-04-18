@@ -14,7 +14,6 @@ class ChainActor(next: Option[ActorRef]) extends Actor {
       from = sender
       if (next.isEmpty) {
         from ! 'Ack
-        exit
       } else {
         println(this + " sending 'Die to " + next.get)
         next.get ! 'Die
