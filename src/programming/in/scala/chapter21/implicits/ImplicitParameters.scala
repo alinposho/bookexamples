@@ -1,5 +1,19 @@
 package programming.in.scala.chapter21.implicits
 
+// These two types have been created explicitly to aid in the implicit paramters
+// matching. Extract from the book
+/*
+	One thing to note about the previous examples is that we didn’t use
+String as the type of prompt or drink, even though ultimately it was a
+String that each of them provided through their preference fields. Be-
+cause the compiler selects implicit parameters by matching types of parame-
+ters against types of values in scope, implicit parameters usually have “rare”
+or “special” enough types that accidental matches are unlikely. For example,
+the types PreferredPrompt and PreferredDrink in Listing 21.1 were de-
+fined solely to serve as implicit parameter types. As a result, it is unlikely
+that implicit variables of these types will be in scope if they aren’t intended
+to be used as implicit parameters to Greeter.greet.
+ */
 class PreferredPrompt(val preferences: String)
 class PreferredDrink(val preference: String)
 
