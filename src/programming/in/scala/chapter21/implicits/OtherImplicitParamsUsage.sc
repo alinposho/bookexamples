@@ -40,9 +40,7 @@ object OtherImplicitParamsUsage {
   // We now notice that our function is able to compute the maximum element from
   // a list of ints.
   maxListImpParm(intList)                         //> res0: Int = 78
-  
   maxListImpParm(List(1.5, 5.2, 10.7, 3.14159))   //> res1: Double = 10.7
-  
   maxListImpParm(List("one", "two", "three"))     //> res2: String = two
-  
+
 }
