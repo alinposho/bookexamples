@@ -1,10 +1,11 @@
 package chapter18.stafulobjects
 
 object VarExample {
-  val t = new Time()                              //> t  : chapter18.stafulobjects.Time = chapter18.stafulobjects.Time@22f4bf02
+  val t = new Time()                              //> t  : chapter18.stafulobjects.Time = chapter18.stafulobjects.Time@5d1f1d6
 
 	// Notice the generated setter method
 	t.hour_=(100)
+	// And the getter method that was automatically generated
 	t.hour                                    //> res0: Int = 100
 	
 	// Notice that one can also use the setter - or is it the actual field - to set
