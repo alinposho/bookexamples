@@ -1,7 +1,7 @@
 package programming.in.scala.chapter21.implicits
 
 // Compile this program with "scalac -Xprint:typer Mocha.scala" and see what happens behind the curtains.
-object Mocha extends Application {
+object Mocha extends App {
   
   class PreferredDrink(val preference: String)
   
