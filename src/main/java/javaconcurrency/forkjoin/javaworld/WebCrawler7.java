@@ -46,7 +46,8 @@ public class WebCrawler7 implements LinkHandler {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
-        new WebCrawler7("http://www.javaworld.com", 64).startCrawling();
+//        new WebCrawler7("http://www.javaworld.com", 64).startCrawling(); // Do not use this site or any other important site since you will be banned!
+    	new WebCrawler7("localhost", 64).startCrawling();
     }
 
 	@Override
