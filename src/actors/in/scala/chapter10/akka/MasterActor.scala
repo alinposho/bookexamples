@@ -68,6 +68,6 @@ object ActorChainMain {
     }
 
     // For some reason actors do not shutdown gracefully
-    exit()
+    sys.exit()
   }
 }
