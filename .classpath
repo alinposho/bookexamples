@@ -9,6 +9,8 @@
   <classpathentry path="/home/alinposho/.ivy2/cache/com.typesafe/config/bundles/config-1.0.0.jar" kind="lib"></classpathentry>
   <classpathentry kind="lib" path="/home/alinposho/.ivy2/cache/org.scala-tools.testing/specs/jars/specs-1.6.2.2_1.5.0.jar" sourcepath="/home/alinposho/.ivy2/cache/org.scala-tools.testing/specs/srcs/specs-1.6.2.2_1.5.0-sources.jar"></classpathentry>
   <classpathentry path="/home/alinposho/.ivy2/cache/org.htmlparser/htmlparser/jars/htmlparser-1.6.jar" kind="lib"></classpathentry>
+  <classpathentry kind="lib" path="/home/alinposho/.ivy2/cache/org.scala-lang/scala-actors-migration/jars/scala-actors-migration-2.10.0-M4.jar" sourcepath="/home/alinposho/.ivy2/cache/org.scala-lang/scala-actors-migration/srcs/scala-actors-migration-2.10.0-M4-sources.jar"></classpathentry>
+  <classpathentry kind="lib" path="/home/alinposho/.ivy2/cache/org.scala-lang/scala-actors/jars/scala-actors-2.10.0-M4.jar" sourcepath="/home/alinposho/.ivy2/cache/org.scala-lang/scala-actors/srcs/scala-actors-2.10.0-M4-sources.jar"></classpathentry>
   <classpathentry kind="lib" path="/home/alinposho/.ivy2/cache/junit/junit/jars/junit-4.8.jar" sourcepath="/home/alinposho/.ivy2/cache/junit/junit/srcs/junit-4.8-sources.jar"></classpathentry>
   <classpathentry kind="lib" path="/home/alinposho/.ivy2/cache/org.scalatest/scalatest_2.10/jars/scalatest_2.10-1.9.1.jar" sourcepath="/home/alinposho/.ivy2/cache/org.scalatest/scalatest_2.10/srcs/scalatest_2.10-1.9.1-sources.jar"></classpathentry>
   <classpathentry kind="lib" path="/home/alinposho/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.10.0.jar" sourcepath="/home/alinposho/.ivy2/cache/org.scala-lang/scala-reflect/srcs/scala-reflect-2.10.0-sources.jar"></classpathentry>

@@ -6,9 +6,9 @@ scalaVersion := "2.10.1"
 
 EclipseKeys.withSource := true
  
-resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
-
-resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
+resolvers ++= Seq(
+  "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
+)
 
 libraryDependencies ++= Seq(
   "junit" % "junit" % "4.8" % "test", 
