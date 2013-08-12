@@ -1,8 +1,9 @@
 package programming.in.scala.chapter32.akka.wiresimulation
 
-import scala.actors._
-import scala.actors.Actor._
-import sun.reflect.generics.reflectiveObjects.NotImplementedException
+import scala.actors.Actor
+import scala.actors.Actor.self
+import scala.annotation.elidable
+import scala.annotation.elidable.ASSERTION
 
 class Clock extends Actor {
 
