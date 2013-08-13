@@ -17,4 +17,10 @@ object HigherOrderListFunctions {
     
     xs span p equals (xs takeWhile p, xs dropWhile p)
                                                   //> res2: Boolean = true
+                                                  
+    (0 /: xs)(_ + _)                              //> res3: Int = 51
+    xs.foldLeft(0)(_ + _)                         //> res4: Int = 51
+    
+    (xs :\ 0)(_ + _)                              //> res5: Int = 51
+    xs.foldRight(0)(_ + _)                        //> res6: Int = 51
 }
