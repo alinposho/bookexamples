@@ -1,4 +1,6 @@
-package real.world.scala.dependency.injection
+package real.world.scala.dependency.injection.no.di
+
+import real.world.scala.dependency.injection.common.User
 	
 class UserRepository {
 	def authenticate(user: User): User = {

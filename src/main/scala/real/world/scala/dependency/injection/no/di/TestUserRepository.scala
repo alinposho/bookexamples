@@ -1,4 +1,4 @@
-package real.world.scala.dependency.injection
+package real.world.scala.dependency.injection.no.di
 
 object TestUserRepository {
   def main(args: Array[String]) {
