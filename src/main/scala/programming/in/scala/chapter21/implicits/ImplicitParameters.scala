@@ -1,6 +1,6 @@
 package programming.in.scala.chapter21.implicits
 
-// These two types have been created explicitly to aid in the implicit paramters
+// These two types have been created explicitly to aid in the implicit param3ters
 // matching. Extract from the book
 /*
 	One thing to note about the previous examples is that we didn’t use
@@ -57,7 +57,7 @@ object ImplicitParameters {
 
     // One can invoke the method with implicit parameters explicitly
     Greeter2ListOfImplicits.greet("Helen")(new PreferredPrompt("relax>"), new PreferredDrink("Cola"))
-    // Onr implicitly
+    // Or implicitly
     Greeter2ListOfImplicits.greet("Joe")
 
   }
