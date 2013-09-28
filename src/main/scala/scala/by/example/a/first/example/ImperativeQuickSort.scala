@@ -1,6 +1,6 @@
 package scala.by.example.a.first.example
 
-object QuickSort {
+object ImperativeQuickSort {
   def sort(xs: Array[Int]): Unit = {
     def swap(i: Int, j: Int) {
       val t = xs(i)
