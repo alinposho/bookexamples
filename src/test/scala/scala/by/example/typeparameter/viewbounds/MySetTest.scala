@@ -13,7 +13,7 @@ class MySetTest extends WordSpec
 
   implicit def doubleToOrderedNum(value: Double) = Num(value)
 
-  "MySet" should {
+  "MySet.incl" should {
     "work with Double instances since we have an implicit conversion method" in {
       val value: Double = 4.5
 
