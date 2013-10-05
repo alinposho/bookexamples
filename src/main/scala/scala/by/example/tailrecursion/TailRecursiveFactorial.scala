@@ -16,7 +16,7 @@ object TailRecursiveFactorial {
   }
   
   def main(args: Array[String]): Unit = {
-    println("4! = " + factorial(4));
-    println("10! = " + factorial(10));
+    println("4! = " + factorial(4))
+    println("10! = " + factorial(10))
   }
 }
