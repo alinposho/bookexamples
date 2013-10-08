@@ -3,6 +3,8 @@ package ducktyping
 /**
  * This is an example of Scala Structural Typing also called Duck Typing by some. I found this code here:
  * http://java.dzone.com/articles/duck-typing-scala-structural
+ * 
+ * To see what happens behind the scenes - what code the compiler will generate, use "scalac -Xprint:typer Quacker.scala" 
  */
 
 object BigDuck {
