@@ -1,5 +1,10 @@
 package ducktyping
 
+/**
+ * This is an example of Scala Structural Typing also called Duck Typing by some. I found this code here:
+ * http://java.dzone.com/articles/duck-typing-scala-structural
+ */
+
 object BigDuck {
   def quack(value: String) = {
     value.toUpperCase
