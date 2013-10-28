@@ -17,4 +17,7 @@ trait OverridesEquals {
 }
 
 class C extends OverridesEquals
-case class CC() extends OverridesEquals
+// Compiling this file with "scalac -print ACaseOfEquality" will show that the CC case class does not have a 
+// "nice" "equals(...)" method generated since, according to the SLS the case classes get a generated equals only
+// if the superclass does not define one. In our case, the OverrideEquals trait defines equals
+case class CC() extends OverridesEquals 
