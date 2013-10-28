@@ -34,7 +34,7 @@ object ATroubleWithTraits {
 
 /*
  * Compile this file using the following command and you will notice how the constructor argument for class b2 sets
- * foo before everything else gets invoked. This is the output of B1 and B2 compilation
+ * foo before everything else gets invoked "scalac -print ATroubleWithTraits". This is the output of B1 and B2 compilation
  class B1 extends Object with scalapuzzlers.A {
     <stable> <accessor> def bar(): Int = B1.this.bar;
     private[this] val bar: Int = _;
