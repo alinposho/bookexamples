@@ -13,6 +13,6 @@ object ArghArrgh {
 //    twiceA(square, 2)
 //    twiceB(square)(2)
 //    twiceC(2, square)
-    twiceD(2)(square)
+    println(twiceD(2)(square))
   }
 }
