@@ -1,6 +1,6 @@
 package scalapuzzlers
 
-object Iterators {
+object Iterators extends App {
   val t = "this is a test"
   val rx = " ".r
   val m = rx.findAllIn(t)
