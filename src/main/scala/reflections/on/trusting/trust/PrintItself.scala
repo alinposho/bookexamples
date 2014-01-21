@@ -1,6 +1,6 @@
 package reflections.on.trusting.trust
 
 object PrintItself extends App {
-  lazy val s = "package reflections.on.trusting.trust\n\nobject PrintItself extends App {\n  val s = \"%s\"\n    print(s, s)\n}"
+  val s = "package reflections.on.trusting.trust  object PrintItself extends App {  val s = \"%s\"  print(s, s)  }"
   printf(s, s)
 }
