@@ -1,0 +1,3 @@
+/** This package contains a Scala example of a program that prints itself, exercise proposed by Ken Thompson in
+  * "Reflections on Trusting Trust", the talks that he gave when receiving the ACM Turing Award. 
+  */

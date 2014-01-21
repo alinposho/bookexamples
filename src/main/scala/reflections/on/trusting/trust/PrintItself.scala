@@ -8,6 +8,6 @@ object PrintItself extends App {
   printf(s.replace("\\", ""), s)
 }
     """
-  printf(s.replace("", ""), s)
+  printf(s.replace("\\", ""), s)
 }
     
