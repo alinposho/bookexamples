@@ -31,6 +31,7 @@ object Test {
     println(x)
   }
 
+  // The compiler warning is intentional, since we want to see how Scala handles binding precendence 
   def testInlineDefinition(): Unit = {
     val x = "Inline definition"
     import Explicit.x
