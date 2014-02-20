@@ -13,4 +13,14 @@ object SimpleRegexpTest {
                                                   //| noProcessed  : String = 382783
 
   intMatch.findAllIn("  6734 98 767 898 ").toList //> res1: List[String] = List(6734 98, 767 898)
+
+  val text = "\\}".r                              //> text  : scala.util.matching.Regex = \}
+  
+  intMatch.findFirstIn("kjkf } ksjks")            //> res2: Option[String] = None
+  
+  "sadas { asdjhajk: ksjdksjd} sdasd".split("\\{([^}]*.?)\\}")
+                                                  //> res3: Array[String] = Array("sadas ", " sdasd")
+  
+  
+  
 }
