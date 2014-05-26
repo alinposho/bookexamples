@@ -17,8 +17,13 @@ object streamExample {
     List(Array("127.0.0.1", "1.1.1.0"),
       Array("127.0.0.1", "1.1.1.1"),
       Array("127.0.0.1", "1.1.1.2"))).toStream    //> stream  : scala.collection.immutable.Stream[List[Array[String]]] = Stream(Li
-                                                  //| st([Ljava.lang.String;@35f310c8, [Ljava.lang.String;@4d09341, [Ljava.lang.St
-                                                  //| ring;@197392df), ?)
+                                                  //| st([Ljava.lang.String;@72af7b86, [Ljava.lang.String;@70ec46ff, [Ljava.lang.S
+                                                  //| tring;@28294944), ?)
+                                                  
+  def fibs: Stream[BigInt] = BigInt(0) #:: BigInt(1) #:: fibs.zip(fibs.tail).map { n => n._1 + n._2 }
+                                                  //> fibs: => Stream[BigInt]
+  
+  val f1 = fibs take(5) toList                    //> f1  : List[BigInt] = List(0, 1, 1, 2, 3)
 
   stream exists (arrayThatContainsHeader)         //> res1: Boolean = true
 }
