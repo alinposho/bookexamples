@@ -20,5 +20,6 @@ libraryDependencies ++= Seq(
   "org.htmlparser" % "htmlparser" % "1.6",
   "org.scala-lang" % "scala-actors-migration" % "2.10.0-M4",
   "com.google.inject" % "guice" % "3.0",
-  "org.json4s" %% "json4s-native" % "3.2.7"
+  "org.json4s" %% "json4s-native" % "3.2.7",
+  "org.easymock" % "easymock" % "3.3"
 )
