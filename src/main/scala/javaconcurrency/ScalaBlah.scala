@@ -1,0 +1,6 @@
+package javaconcurrency
+
+class ScalaBlah {
+
+  
+}
