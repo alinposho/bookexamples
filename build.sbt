@@ -13,8 +13,8 @@ resolvers ++= Seq(
 libraryDependencies ++= Seq(
   "junit" % "junit" % "4.8" % "test", 
   "org.scalatest" %% "scalatest" % "1.9.1" % "test",
-  "com.typesafe.akka" %% "akka-testkit" % "2.2-M3",
-  "com.typesafe.akka" %% "akka-actor" % "2.2-M3",
+  "com.typesafe.akka" %% "akka-testkit" % "2.3.4",
+  "com.typesafe.akka" %% "akka-actor" % "2.3.4",
   "org.scalacheck" %% "scalacheck" % "1.10.1" % "test",
   "org.specs2" %% "specs2" % "2.1.1" % "test",
   "org.htmlparser" % "htmlparser" % "1.6",
