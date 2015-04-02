@@ -1,7 +1,5 @@
 package functional.thinking.chapter5
 
-import java.net.URL
-
 import scala.io.Source
 import scala.util.control.NonFatal
 

@@ -12,8 +12,8 @@ object SelfSeeSelf {
   def main(args: Array[String]): Unit = {
 
     // This will not compile as is, but it will work when copy pasted in the REPL
-    //  val s1: String = s1
-    //  val s2: String = s2 + s2
+//      val s1: String = s1
+//      val s2: String = s2 + s2
 
     println(s2.length) // This will actually print 8
     println(s1.length) // This will raise a NullPointerException

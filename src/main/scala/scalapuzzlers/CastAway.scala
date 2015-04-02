@@ -10,6 +10,6 @@ object CastAway extends App {
 
   // watch out here...Integer is not Int!
   val map = fromJava.asScala.asInstanceOf[scala.collection.Map[String, Int]]
-  println(map("key") == null)
+  // println(map("key") == null) // This will always yield false
   println(map("key") == 0)
 }
