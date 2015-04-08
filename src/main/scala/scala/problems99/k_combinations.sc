@@ -7,7 +7,11 @@ object k_combinations {
   def kcombinations(k: Int, st: Set[Int]): Set[Set[Int]] = {
     if (k <= 0) Set(Set[Int]())
     else {
-      val res = for (s <- st; subst <- kcombinations(k - 1, st); val nsubst = subst + s; if (nsubst.size == k)) yield nsubst
+      val res = for {
+      s <- st
+      subst <- kcombinations(k - 1, st)
+      val nsubst = subst + s
+      if (nsubst.size == k)} yield nsubst
       res.toSet
     }
   }                                               //> kcombinations: (k: Int, st: Set[Int])Set[Set[Int]]
