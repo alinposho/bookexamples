@@ -5,7 +5,7 @@ object balancingBracketsWithATwist {
 
   "(ab)c".toSeq.toVector.span(_ == '(')           //> res0: (scala.collection.immutable.Vector[Char], scala.collection.immutable.V
                                                   //| ector[Char]) = (Vector((),Vector(a, b, ), c))
-  
+
   "(ab(c(d))e".toSeq.toVector.span(_ == '(')      //> res1: (scala.collection.immutable.Vector[Char], scala.collection.immutable.V
                                                   //| ector[Char]) = (Vector((),Vector(a, b, (, c, (, d, ), ), e))
 
@@ -16,17 +16,13 @@ object balancingBracketsWithATwist {
   // Execution time O(n^2)
   def extract(vct: Vector[Char]): Vector[Char] = {
     val res = vct.foldLeft(Vector.empty[Char]) { // O(n)
-      case (v, e) =>
-        if (e == ')') {
-        	val i = v lastIndexOf('(') // O(n)
-          v.take(i) // O(n)
-        } else {
-          v :+ e // O(log32n)
-        }
+      case (v, ')') =>
+        val i = v lastIndexOf ('(') // O(n)
+        v.take(i) // O(n)
+      case (v, e) => v :+ e // O(log32n)
     }
     res filter (_ isLetter) // O(n)
   }                                               //> extract: (vct: Vector[Char])Vector[Char]
-  
 
   extract("(ab)".toSeq.toVector) == Vector()      //> res3: Boolean = true
 
@@ -35,6 +31,7 @@ object balancingBracketsWithATwist {
 
   extract("(ab)c".toSeq.toVector) == Vector('c')  //> res5: Boolean = true
 
-  extract("(ab(c(d))e".toSeq.toVector)            //> res6: Vector[Char] = Vector(a, b, e)
+  extract("(ab(c(d))e".toSeq.toVector) == Vector('a', 'b', 'e')
+                                                  //> res6: Boolean = true
 
 }
