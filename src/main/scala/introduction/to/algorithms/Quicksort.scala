@@ -16,12 +16,13 @@ object Quicksort {
     def partition(a: Array[A], p: Int, r: Int)(implicit ord: Ordering[A]): Int = {
       val x = a(r)
       var i = p - 1
-      //replace with a while loop to improve performance
-      for (j <- p to r - 1) {
+      var j = p
+      while(j <= r - 1) {
         if (ord.compare(a(j), x) <= 0) {
           i += 1
           exchange(a, i, j)
         }
+        j += 1
       }
       exchange(a, i + 1, r)
 

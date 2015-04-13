@@ -9,7 +9,7 @@ object ImperativeQuickSort {
     }
 
     def sort(left: Int, right: Int): Unit = {
-      var pivot = xs((right + left) / 2)
+      val pivot = xs((right + left) / 2)
       var i = left
       var j = right
       while (i <= j) {
