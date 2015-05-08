@@ -29,5 +29,12 @@ object Monad {
     def flatMap[A, B](ma: Option[A])(f: A => Option[B]): Option[B] =
       ma flatMap f
   }
+
+  val listMonad = new Monad[List] {
+    def unit[A](a: => A): List[A] = List(a)
+
+    def flatMap[A, B](ma: List[A])(f: A => List[B]): List[B] =
+      ma flatMap f
+  }
 }
 

@@ -20,3 +20,10 @@ for {
 optionMonad.sequence(lma)
 
 optionMonad.traverse(1 to 5 toList)(Option.apply _)
+
+// List monad samples
+
+val xs = listMonad.unit("blah")
+listMonad.map(xs)(_.size)
+
+listMonad.flatMap(xs)(_.map(_.toUpper).toList)
