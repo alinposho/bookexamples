@@ -11,7 +11,7 @@ trait Monad[F[_]] extends Functor[F] {
 
   def sequence[A](lma: List[F[A]]): F[List[A]] = {
     val fEmptyList: F[List[A]] = unit(List.empty[A])
-    lma.foldRight(fEmptyList){
+    lma.foldRight(fEmptyList) {
       case (fa, fseq) => flatMap(fa)((a: A) => map(fseq)(seq => a :: seq))
     }
   }
@@ -19,6 +19,9 @@ trait Monad[F[_]] extends Functor[F] {
   def traverse[A, B](la: List[A])(f: A => F[B]): F[List[B]] = {
     sequence(la map f)
   }
+
+  def compose[A, B, C](f: A => F[B], g: B => F[C]): A => F[C] = (a: A) => flatMap(f(a))(g)
+
 }
 
 
