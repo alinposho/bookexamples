@@ -2,7 +2,6 @@ package scalapuzzlers
 
 object DoubleTrouble extends App {
   def printSorted(a: Array[Double]) {
-    util.Sorting.stableSort(a)
     println(a.mkString(" "))
   }
 
