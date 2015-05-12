@@ -10,12 +10,13 @@ object futuresSamples {
 
   def all[T](fs: List[Future[T]]): Future[List[T]] = {
     fs.foldLeft(Future.successful(mutable.ListBuffer.empty[T])) {
-      (fr, fa) => for (r <- fr; a <- fa) yield r += a
+      (fr, fa) => for (a <- fa; r <- fr) yield r += a
     } map { _.toList }
   }                                               //> all: [T](fs: List[scala.concurrent.Future[T]])scala.concurrent.Future[List[T
                                                   //| ]]
        
-  val fs = 1 to 10 map (x => Future{x}) toList    //> fs  : List[scala.concurrent.Future[Int]] = List(scala.concurrent.impl.Promis
+  val fs = 1 to 10 map (x => Future{ Thread.sleep(1000 - x * 100); println("x=" + x); x}) toList
+                                                  //> fs  : List[scala.concurrent.Future[Int]] = List(scala.concurrent.impl.Promis
                                                   //| e$DefaultPromise@3dd4520b, scala.concurrent.impl.Promise$DefaultPromise@5ae6
                                                   //| 3ade, scala.concurrent.impl.Promise$DefaultPromise@610694f1, scala.concurren
                                                   //| t.impl.Promise$DefaultPromise@43814d18, scala.concurrent.impl.Promise$Defaul
@@ -25,7 +26,20 @@ object futuresSamples {
                                                   //| @2758fe70, scala.concurrent.impl.Promise$DefaultPromise@1f36e637)
   
   val res = all(fs)                               //> res  : scala.concurrent.Future[List[Int]] = scala.concurrent.impl.Promise$De
-                                                  //| faultPromise@6321e813
+                                                  //| faultPromise@22a67b4
   
-  Await.result(res, 3.seconds)                    //> res0: List[Int] = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+  Await.result(res, 3.seconds)                    //> x=8
+                                                  //| x=7
+                                                  //| x=10
+                                                  //| x=9
+                                                  //| x=6
+                                                  //| x=5
+                                                  //| x=4
+                                                  //| x=3
+                                                  //| x=2
+                                                  //| x=1
+                                                  //| res0: List[Int] = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+                                                  
+	Await.result(Future.sequence(fs), 3.seconds)
+                                                  //> res1: List[Int] = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 }
